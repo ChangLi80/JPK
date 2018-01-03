@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JPKVat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        xmlns:vm="clr-namespace:JPKVat.Models"
+        Title="JPK VAT" Height="350" Width="525">
+    <Window.Resources>
+        <vm:JPKViewModel x:Key="myview" />
+    </Window.Resources>
+    <Grid DataContext="{Binding Source={StaticResource myview}}" Margin="0,0,0,0">
+        <Button x:Name="button" Content="Connect To Informix" HorizontalAlignment="Left" Margin="33,75,0,0" VerticalAlignment="Top" Width="133" Command="{Binding ConnectCommand}" CommandParameter="{Binding ConnectionString}"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="53" Margin="33,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="463" Text="{Binding ConnectionString}"/>
+        <TextBlock  Margin="196,75,21,197" Text="{Binding IFXMessage,Mode=TwoWay}"/>
+
+
     </Grid>
 </Window>
