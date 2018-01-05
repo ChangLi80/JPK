@@ -8,10 +8,10 @@ namespace JPKVat.Models
 {
     public interface Ijpk
     {
-        string KodKodFormularza { get; set; }
+        string KodFormularza { get; set; }
         string kodSystemowy { get; set; }
         string wersjaSchemy { get; set; }
-        string WariantFormularz { get; set; }
+        string WariantFormularza { get; set; }
 
         string CelZlozenia { get; set; }
         DateTime DataWytworzeniaJPK { get; set; }
@@ -32,5 +32,7 @@ namespace JPKVat.Models
         string Miejscowosc { get; set; }
         string KodPocztowy { get; set; }
         string Poczta { get; set; }
+
+        string JPKMessage { get; set; }
     }
 }
