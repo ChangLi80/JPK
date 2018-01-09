@@ -25,17 +25,48 @@ namespace JPKVat.Models
             get { return _GenerateJPK; }
         }
 
+        RelayCommand _PreviousMonth;
+        public ICommand PreviousMonth
+        {
+            get { return _PreviousMonth; }
+        }
+
+        RelayCommand _NextMonth;
+        public ICommand NextMonth
+        {
+            get { return _NextMonth; }
+        }
+
+
         public JPKViewModel()
         {
             _ConnectCommand = new RelayCommand((r) => TryToConnect(), (r) => { return true; });
             _GenerateJPK = new RelayCommand((r) => GenerujJPK(), (r) => {
-                bool ret =(IFXMessage.Equals("Success") && DataOd < DataDo);
+                bool ret = (IFXMessage.Equals("Success") && DataOd < DataDo);
                 return ret;
             });
+
+            _PreviousMonth = new RelayCommand((r) => CalcPreviousMonth(), (r) => { return true; } );
+            _NextMonth = new RelayCommand((r) => CalcNextMonth(), (r) => { return true; });
 
             ConnectionString = "Dsn=PowerLine";
             IFXMessage = "Not Connected";
             InicjacjaJPK(this);
+
+        }
+
+        private void CalcPreviousMonth()
+        {
+            DateTime dt =  DataOd.AddMonths(-1);
+            DataOd = new DateTime(dt.Year, dt.Month, 1);
+            DataDo = new DateTime(dt.Year, dt.Month, DateTime.DaysInMonth(dt.Year, dt.Month));
+        }
+
+        private void CalcNextMonth()
+        {
+            DateTime dt = DataOd.AddMonths(1);
+            DataOd = new DateTime(dt.Year, dt.Month, 1);
+            DataDo = new DateTime(dt.Year, dt.Month, DateTime.DaysInMonth(dt.Year, dt.Month));
 
         }
 

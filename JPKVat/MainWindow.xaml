@@ -10,7 +10,7 @@
     <Window.Resources>
         <vm:JPKViewModel x:Key="myview"/>
     </Window.Resources>
-    <Grid DataContext="{Binding Source={StaticResource myview}}" Margin="0,0,0,269" RenderTransformOrigin="0.337,2.556">
+    <Grid DataContext="{Binding Source={StaticResource myview}}" Margin="0,0,0,255" RenderTransformOrigin="0.337,2.556">
         <Button x:Name="button" Content="Connect To Informix" Width="133" Command="{Binding ConnectCommand}" CommandParameter="{Binding ConnectionString}" Margin="33,2,351,10"/>
         <TextBlock Text="{Binding IFXMessage, Mode=TwoWay}" Margin="184,4,52,2" RenderTransformOrigin="0.5,0.5" />
         <Label x:Name="KodFormularza" Content="KodFormularza" HorizontalAlignment="Left" Height="29" Margin="33,64,0,-57" VerticalAlignment="Top" Width="89"/>
@@ -19,12 +19,14 @@
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="127,64,0,-51" TextWrapping="Wrap" Text="{Binding KodFormularza,Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="127,92,0,-79" TextWrapping="Wrap" Text="{Binding kodSystemowy,Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="127,120,0,-107" TextWrapping="Wrap" Text="{Binding wersjaSchemy,Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label" Content="Od" HorizontalAlignment="Left" Height="23" Margin="280,64,0,-51" VerticalAlignment="Top" Width="50"/>
-        <Label x:Name="label_Copy" Content="Do" HorizontalAlignment="Left" Height="23" Margin="280,92,0,-79" VerticalAlignment="Top" Width="50"/>
-        <DatePicker Height="29" SelectedDate="{Binding DataOd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Margin="352,62,21,-41" VerticalAlignment="Top" Width="144"/>
-        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding DataDo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="29" Margin="352,98,0,-91" VerticalAlignment="Top" Width="144"/>
+        <Label x:Name="label" Content="Od" HorizontalAlignment="Left" Height="23" Margin="280,79,0,-65" VerticalAlignment="Top" Width="50"/>
+        <Label x:Name="label_Copy" Content="Do" HorizontalAlignment="Left" Height="23" Margin="280,117,0,-103" VerticalAlignment="Top" Width="50"/>
+        <DatePicker Height="29" SelectedDate="{Binding DataOd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Margin="352,77,62,-69" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" SelectedDate="{Binding DataDo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="29" Margin="352,113,0,-105" VerticalAlignment="Top" Width="103"/>
         <Button x:Name="button1" Content="Generuj JPK" HorizontalAlignment="Left" Height="100" Margin="19,190,0,-240" VerticalAlignment="Top" Width="194" Command="{Binding GenerateJPK}" CommandParameter="{Binding ConnectionString}"/>
         <TextBox  Margin="226,190,21,-240" Text="{Binding JPKMessage, Mode=OneWay}" TextWrapping="Wrap" />
+        <Button x:Name="btPrevious" Content="&lt;&lt;" Command="{Binding PreviousMonth}" HorizontalAlignment="Left" Height="22" Margin="352,43,0,-28" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.6,0.455"/>
+        <Button x:Name="btNext" Content="&gt;&gt;" Command="{Binding NextMonth}" HorizontalAlignment="Left" Height="22" Margin="409,43,0,-28" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.6,0.455"/>
 
     </Grid>
 </Window>

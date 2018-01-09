@@ -1,6 +1,8 @@
-﻿using JPKVat.Models;
+﻿using JPKVat.Informix;
+using JPKVat.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,9 +63,8 @@ namespace JPKVat.Models
                     csv.WriteField(jpk.Poczta);
                     for (int i = 0; i < fields.Count() - fields.ToList().IndexOf("Poczta"); i++) csv.WriteField("");
                     csv.NextRecord();
-                    for (int i = 0; i < fields.ToList().IndexOf("typSprzedazy"); i++) csv.WriteField("");
                     FkRejSprzedazy(jpk, csv);
-
+                    FkRejZakupow(jpk, csv);
                 }
                 jpk.JPKMessage = (new StringBuilder()).AppendLine("Wygenerowano JPK csv").AppendLine(jpkPath).ToString();
                 return true;
@@ -79,12 +80,81 @@ namespace JPKVat.Models
 
         public void FkRejSprzedazy(Ijpk jpk,CsvHelper.CsvWriter csv)
         {
-            csv.WriteField("G");
+            //typSprzedazy	LpSprzedazy	NrKontrahenta	NazwaKontrahenta	AdresKontrahenta	DowodSprzedazy	DataWystawienia	DataSprzedazy	K_10	K_11	K_12	K_13	K_14	K_15	K_16	K_17	K_18	K_19	K_20	K_21	K_22	K_23	K_24	K_25	K_26	K_27	K_28	K_29	K_30	K_31	K_32	K_33	K_34	K_35	K_36	K_37	K_38	K_39
+            var fields = header.Split(";".ToCharArray());
+            IFXHelper ifx = new IFXHelper();
+            DataTable dt = ifx.GetRejSprzedazy(jpk.ConnectionString, jpk.DataOd, jpk.DataDo);
+
+            int ICount = 0;
+            double vat = 0.0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                for (int i = 0; i < fields.ToList().IndexOf("typSprzedazy"); i++) csv.WriteField("");
+                csv.WriteField("G");
+                csv.WriteField(++ICount);
+                csv.WriteField(dr["nip"].ToString().Trim());
+                csv.WriteField(dr["nazwa"].ToString().Trim());
+                StringBuilder cbAddress = new StringBuilder();
+                cbAddress.Append(dr["miasto"]).Append(" ").Append(dr["ulica"]).Append(" ").Append(dr["nr"]);
+                csv.WriteField(cbAddress.ToString());
+                csv.WriteField(dr["nrksiegowy"].ToString().Trim());
+                csv.WriteField(Convert.ToDateTime(dr["datawyst"]).ToShortDateString());
+                csv.WriteField(Convert.ToDateTime(dr["datasprzed"]).ToShortDateString());
+                csv.WriteField("");
+                csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? dr["netto"] : "");
+                PutEmpty(csv, "K_12", "K_19");
+                csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? "" : dr["netto"]);
+                csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? "" : dr["vat"]);
+                for (int i = 0; i < fields.Count() - fields.ToList().IndexOf("K_21"); i++) csv.WriteField("");
+                vat += Convert.ToDouble(dr["vat"]);
+                csv.NextRecord();
+            }
+            for (int i = 0; i < fields.ToList().IndexOf("LiczbaWierszySprzedazy"); i++) csv.WriteField("");
+            csv.WriteField(ICount);
+            csv.WriteField(vat);
+            for (int i = 0; i < fields.Count() - fields.ToList().IndexOf("PodatekNalezny"); i++) csv.WriteField("");
             csv.NextRecord();
         }
 
-        public void FkRejZakupow(Ijpk jpk,CsvHelper.CsvWriter csv)
+        public void FkRejZakupow(Ijpk jpk, CsvHelper.CsvWriter csv)
         {
+            //typZakupu;LpZakupu;NrDostawcy;NazwaDostawcy;AdresDostawcy;DowodZakupu;DataZakupu;DataWplywu;K_43;K_44;K_45;K_46;K_47;K_48;K_49;K_50;LiczbaWierszyZakupow;PodatekNaliczony
+            var fields = header.Split(";".ToCharArray());
+            IFXHelper ifx = new IFXHelper();
+            DataTable dt = ifx.GetRefZakupow(jpk.ConnectionString, jpk.DataOd, jpk.DataDo);
+            int ICount = 0;
+            double vat = 0.0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                for (int i = 0; i < fields.ToList().IndexOf("typZakupu"); i++) csv.WriteField("");
+                csv.WriteField("G");
+                csv.WriteField(++ICount);
+                csv.WriteField(dr["nip"].ToString().Trim());
+                csv.WriteField(dr["nazwa"].ToString().Trim());
+                StringBuilder cbAddress = new StringBuilder();
+                cbAddress.Append(dr["miasto"].ToString().Trim()).Append(" ").Append(dr["ulica"].ToString().Trim()).Append(" ").Append(dr["nr"].ToString().Trim());
+                csv.WriteField(cbAddress.ToString());
+                csv.WriteField(dr["nrfaktury"].ToString());
+                csv.WriteField(Convert.ToDateTime(dr["datawyst"]).ToShortDateString());
+                csv.WriteField(Convert.ToDateTime(dr["datawpl"]).ToShortDateString());
+                PutEmpty(csv, "K_43", "K_45");
+                csv.WriteField(dr["netto"]);
+                csv.WriteField(dr["vat"]);
+                for (int i = 0; i < fields.Count() - fields.ToList().IndexOf("K_47"); i++) csv.WriteField("");
+                vat += Convert.ToDouble(dr["vat"]);
+                csv.NextRecord();
+            }
+            for (int i = 0; i < fields.ToList().IndexOf("LiczbaWierszyZakupow"); i++) csv.WriteField("");
+            csv.WriteField(ICount);
+            csv.WriteField(vat);
+            csv.NextRecord();
+        }
+
+        public void PutEmpty(CsvHelper.CsvWriter csv, string from, string to)
+        {
+            var fields = header.Split(";".ToCharArray());
+            for (int i = 0; i < fields.ToList().IndexOf(to) - fields.ToList().IndexOf(from); i++) csv.WriteField("");
+
 
         }
 

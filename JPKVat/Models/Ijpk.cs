@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JPKVat.Models
 {
-    public interface Ijpk
+    public interface Ijpk : IConstring
     {
         string KodFormularza { get; set; }
         string kodSystemowy { get; set; }
@@ -34,5 +34,11 @@ namespace JPKVat.Models
         string Poczta { get; set; }
 
         string JPKMessage { get; set; }
+
+    }
+
+    public interface IConstring
+    {
+        string ConnectionString { get; set; }
     }
 }

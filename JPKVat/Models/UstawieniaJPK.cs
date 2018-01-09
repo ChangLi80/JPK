@@ -22,18 +22,18 @@ namespace JPKVat.Models
 
             jpk.DomyslnyKodWaluty = "PLN";
             jpk.KodUrzedu="US GLIWICE";
-            jpk.NIP="";
-            jpk.PelnaNazwa="DigiSys Technologies";
-            jpk.REGON="121313";
+            jpk.NIP= "6310202474";
+            jpk.PelnaNazwa= "DIGITAL SYSTEMS TECHNOLOGIES";
+            jpk.REGON= "3466199";
             jpk.KodKraju ="PL";
-            jpk.Wojewodztwo ="SLASKIE";
+            jpk.Wojewodztwo = "ŚLĄSKIE";
             jpk.Powiat = "GLIWICE";
             jpk.Gmina = "GLIWICE";
             jpk.Ulica = "Strzeleckiego";
             jpk.NrDomu = "32";
             jpk.NrLokalu = "";
             jpk.Miejscowosc = "GLIWICE";
-            jpk.KodPocztowy = "44-100";
+            jpk.KodPocztowy = "44-105";
             jpk.Poczta = "GLIWICE";
 
         }
