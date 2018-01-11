@@ -13,15 +13,15 @@ namespace JPKVat.Models
         {
             jpk.KodFormularza = "JPK_VAT";
             jpk.kodSystemowy = "JPK_VAT (2)";
-            jpk.wersjaSchemy = "1/1/2000";
+            jpk.wersjaSchemy = "1-0";
             jpk.WariantFormularza = "2";
             jpk.CelZlozenia = "1";
             DateTime lastdayofPreviousMoth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddDays(-1);
             jpk.DataOd =  new DateTime(lastdayofPreviousMoth.Year, lastdayofPreviousMoth.Month, 1);
             jpk.DataDo = lastdayofPreviousMoth;
-
+            jpk.DataWytworzeniaJPK = DateTime.Now;
             jpk.DomyslnyKodWaluty = "PLN";
-            jpk.KodUrzedu="US GLIWICE";
+            jpk.KodUrzedu= "2413";
             jpk.NIP= "6310202474";
             jpk.PelnaNazwa= "DIGITAL SYSTEMS TECHNOLOGIES";
             jpk.REGON= "3466199";
