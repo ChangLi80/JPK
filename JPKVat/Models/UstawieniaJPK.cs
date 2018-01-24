@@ -24,7 +24,7 @@ namespace JPKVat.Models
             jpk.KodUrzedu= "2413";
             jpk.NIP= "6310202474";
             jpk.PelnaNazwa= "DIGITAL SYSTEMS TECHNOLOGIES";
-            jpk.REGON= "3466199";
+            jpk.REGON= "003466199";
             jpk.KodKraju ="PL";
             jpk.Wojewodztwo = "ŚLĄSKIE";
             jpk.Powiat = "GLIWICE";

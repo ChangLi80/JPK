@@ -1,4 +1,5 @@
-﻿using JPKVat.Informix;
+﻿using JPKVat.Extentions;
+using JPKVat.Informix;
 using JPKVat.Models;
 using System;
 using System.Collections.Generic;
@@ -35,9 +36,9 @@ namespace JPKVat.Models
                     csv.WriteField(jpk.wersjaSchemy);
                     csv.WriteField(jpk.WariantFormularza);
                     csv.WriteField(jpk.CelZlozenia);
-                    csv.WriteField(jpk.DataWytworzeniaJPK.ToShortDateString());
-                    csv.WriteField(jpk.DataOd.ToShortDateString());
-                    csv.WriteField(jpk.DataDo.ToShortDateString());
+                    csv.WriteField(jpk.DataWytworzeniaJPK.ToJPKDataUtworzenia());
+                    csv.WriteField(jpk.DataOd.ToJPK());
+                    csv.WriteField(jpk.DataDo.ToJPK());
                     csv.WriteField(jpk.DomyslnyKodWaluty);
                     csv.WriteField(jpk.KodUrzedu);
                     for (int i = 0; i < fields.Count() - fields.ToList().IndexOf("KodUrzedu"); i++) csv.WriteField("");
@@ -78,6 +79,7 @@ namespace JPKVat.Models
 
 
 
+
         public void FkRejSprzedazy(Ijpk jpk,CsvHelper.CsvWriter csv)
         {
             //typSprzedazy	LpSprzedazy	NrKontrahenta	NazwaKontrahenta	AdresKontrahenta	DowodSprzedazy	DataWystawienia	DataSprzedazy	K_10	K_11	K_12	K_13	K_14	K_15	K_16	K_17	K_18	K_19	K_20	K_21	K_22	K_23	K_24	K_25	K_26	K_27	K_28	K_29	K_30	K_31	K_32	K_33	K_34	K_35	K_36	K_37	K_38	K_39
@@ -98,8 +100,8 @@ namespace JPKVat.Models
                 cbAddress.Append(dr["miasto"]).Append(" ").Append(dr["ulica"]).Append(" ").Append(dr["nr"]);
                 csv.WriteField(cbAddress.ToString());
                 csv.WriteField(dr["nrksiegowy"].ToString().Trim());
-                csv.WriteField(Convert.ToDateTime(dr["datawyst"]).ToShortDateString());
-                csv.WriteField(Convert.ToDateTime(dr["datasprzed"]).ToShortDateString());
+                csv.WriteField(Convert.ToDateTime(dr["datawyst"]).ToJPK());
+                csv.WriteField(Convert.ToDateTime(dr["datasprzed"]).ToJPK());
                 csv.WriteField("");
                 csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? dr["netto"] : "");
                 PutEmpty(csv, "K_12", "K_19");
@@ -135,8 +137,8 @@ namespace JPKVat.Models
                 cbAddress.Append(dr["miasto"].ToString().Trim()).Append(" ").Append(dr["ulica"].ToString().Trim()).Append(" ").Append(dr["nr"].ToString().Trim());
                 csv.WriteField(cbAddress.ToString());
                 csv.WriteField(dr["nrfaktury"].ToString());
-                csv.WriteField(Convert.ToDateTime(dr["datawyst"]).ToShortDateString());
-                csv.WriteField(Convert.ToDateTime(dr["datawpl"]).ToShortDateString());
+                csv.WriteField(Convert.ToDateTime(dr["datawyst"]).ToJPK());
+                csv.WriteField(Convert.ToDateTime(dr["datawpl"]).ToJPK());
                 PutEmpty(csv, "K_43", "K_45");
                 csv.WriteField(dr["netto"]);
                 csv.WriteField(dr["vat"]);
