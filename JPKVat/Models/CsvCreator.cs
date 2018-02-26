@@ -131,7 +131,7 @@ namespace JPKVat.Models
                 for (int i = 0; i < fields.ToList().IndexOf("typZakupu"); i++) csv.WriteField("");
                 csv.WriteField("G");
                 csv.WriteField(++ICount);
-                csv.WriteField(dr["nip"].ToString().Trim());
+                csv.WriteField(dr["nip"].ToString().Trim().Length == 0 ? " " : dr["nip"].ToString().Trim());
                 csv.WriteField(dr["nazwa"].ToString().Trim());
                 StringBuilder cbAddress = new StringBuilder();
                 cbAddress.Append(dr["miasto"].ToString().Trim()).Append(" ").Append(dr["ulica"].ToString().Trim()).Append(" ").Append(dr["nr"].ToString().Trim());
