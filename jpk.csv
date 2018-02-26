@@ -1,0 +1,18 @@
+﻿KodFormularza;kodSystemowy;wersjaSchemy;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;DomyslnyKodWaluty;KodUrzedu;NIP;PelnaNazwa;REGON;KodKraju;Wojewodztwo;Powiat;Gmina;Ulica;NrDomu;NrLokalu;Miejscowosc;KodPocztowy;Poczta;typSprzedazy;LpSprzedazy;NrKontrahenta;NazwaKontrahenta;AdresKontrahenta;DowodSprzedazy;DataWystawienia;DataSprzedazy;K_10;K_11;K_12;K_13;K_14;K_15;K_16;K_17;K_18;K_19;K_20;K_21;K_22;K_23;K_24;K_25;K_26;K_27;K_28;K_29;K_30;K_31;K_32;K_33;K_34;K_35;K_36;K_37;K_38;K_39;LiczbaWierszySprzedazy;PodatekNalezny;typZakupu;LpZakupu;NrDostawcy;NazwaDostawcy;AdresDostawcy;DowodZakupu;DataZakupu;DataWplywu;K_43;K_44;K_45;K_46;K_47;K_48;K_49;K_50;LiczbaWierszyZakupow;PodatekNaliczony
+JPK_VAT;JPK_VAT (2);1-0;2;1;2018-01-24T14:59:16;2017-12-01;2017-12-31;PLN;2413;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;6310202474;DIGITAL SYSTEMS TECHNOLOGIES;003466199;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;PL;ŚLĄSKIE;GLIWICE;GLIWICE;Strzeleckiego;32;;GLIWICE;44-105;GLIWICE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;1;8951721625;Proline Sp. z o.o.;Wrocław Trzebnicka 33b;"FF/GLI-KL/003623/17 ";2017-12-23;2018-01-24;;;143.09;32.91;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;2;8951721625;Proline Sp. z o.o.;Wrocław Trzebnicka 33b;"FF/GLI-KL/003635/17 ";2017-12-27;2018-01-24;;;259.35;59.65;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;3;6310205745;CARBO-CAR Leszek Krowicki;Gliwice Witkiewicz 17;"J/190/2017          ";2017-12-29;2018-01-24;;;121.32;27.90;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;4;5220002860;Makro Cash and Carry Polska S.A.;Warszawa Al. Jerozolimskie 184;"0/0(012)0007/363099 ";2017-12-29;2018-01-24;;;22.32;5.13;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;5;5271037727;Polkomtel S.A.;Warszawa Al. Jerozolimskie 81;"1710240061783       ";2017-11-27;2017-11-30;;;466.97;107.40;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;6;5220002860;Makro Cash and Carry Polska S.A.;Warszawa Al. Jerozolimskie 184;"0/0(012)0008/336078 ";2017-12-02;2018-01-24;;;11.18;2.57;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;7;5862040690;Vectra S.A.;Gdynia Aleja Zwycięstwa 253;"FVT/0450961/11/2017 ";2017-12-07;2018-01-24;;;53.20;12.23;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;8;6310205745;CARBO-CAR Leszek Krowicki;Gliwice Witkiewicz 17;"J/164/2017          ";2017-12-19;2018-01-24;;;60.66;13.95;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;9;5220002860;Makro Cash and Carry Polska S.A.;Warszawa Al. Jerozolimskie 184;"0/0(012)0008/345083 ";2017-12-11;2018-01-24;;;33.48;7.70;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;10;6310205745;CARBO-CAR Leszek Krowicki;Gliwice Witkiewicz 17;"J/174/2017          ";2017-12-22;2018-01-24;;;121.32;27.90;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;11;5261035247;Norauto Polska Sp. z o.o.;Warszawa Jubilerska 10;"124819/705          ";2017-12-02;2018-01-02;;;21.13;4.86;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;12;5260250995;Telekomunikacja Polska S.A.;Gliwice Bernardyńska 14;"F0052471445/006/17  ";2017-11-19;2017-11-30;;;139.00;31.97;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;G;13;6310205745;CARBO-CAR Leszek Krowicki;Gliwice Witkiewicz 17;"J/151/2017          ";2017-12-16;2018-01-24;;;60.66;13.95;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;13;348.12
