@@ -11,23 +11,29 @@ namespace JPKVat.Informix
 {
     class IFXHelper
     {
-        public static string TryToConnect(string connectionstring)
+        public static Task<string> TryToConnect(string connectionstring)
         {
-            try
+            Task<string> _task = new Task<string>(() =>
             {
-                OdbcConnection DbConnection = new OdbcConnection(connectionstring);
-                DbConnection.Open();
-                //DataSet ds = new DataSet();
-                //OdbcDataAdapter da = new OdbcDataAdapter("SELECT h.idfakt,k.netto,k.vat,s.stawka,h.netto,k.dataew FROM fkx_vatz h, fkx_vatz_kwoty k, fkx_stawkivat s WHERE k.stawka = s.idstawki AND h.idvat = k.idvat ORDER BY h.idfakt ", DbConnection);
-                //da.Fill(ds);
-                DbConnection.Close();
-                return "Success";
-            }
-            catch (OdbcException ex)
-            {
-                return ex.Message;
-            }
+                try
+                {
+                    OdbcConnection DbConnection = new OdbcConnection(connectionstring);
+                    DbConnection.Open();
+                    //DataSet ds = new DataSet();
+                    //OdbcDataAdapter da = new OdbcDataAdapter("SELECT h.idfakt,k.netto,k.vat,s.stawka,h.netto,k.dataew FROM fkx_vatz h, fkx_vatz_kwoty k, fkx_stawkivat s WHERE k.stawka = s.idstawki AND h.idvat = k.idvat ORDER BY h.idfakt ", DbConnection);
+                    //da.Fill(ds);
+                    DbConnection.Close();
+                    return "Success";
+                }
+                catch (OdbcException ex)
+                {
+                    return ex.Message;
+                }
+            });
+            _task.Start();
+            return _task;
         }
+
 
 
         public DataTable GetRejSprzedazy(string connectionstring, DateTime from, DateTime to)

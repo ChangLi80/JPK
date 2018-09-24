@@ -41,7 +41,7 @@ namespace JPKVat.Models
 
         public JPKViewModel()
         {
-            _ConnectCommand = new RelayCommand((r) => TryToConnect(), (r) => { return true; });
+            _ConnectCommand = new RelayCommand((r) => TryToConnect(), (r) => { return !IFXMessage.Equals("Trying to connect"); });
             _GenerateJPK = new RelayCommand((r) => GenerujJPK(), (r) => {
                 bool ret = (IFXMessage.Equals("Success") && DataOd < DataDo);
                 return ret;
@@ -77,9 +77,10 @@ namespace JPKVat.Models
             csv.CreateCSvFile(this);    
         }
 
-        private void TryToConnect()
+        private async void  TryToConnect()
         {
-            IFXMessage = Informix.IFXHelper.TryToConnect(ConnectionString);
+            IFXMessage = "Trying to connect";
+            IFXMessage = await Informix.IFXHelper.TryToConnect(ConnectionString);
         }
 
         private bool SetProperty<T>(ref T oldvalue, T newvalue, [CallerMemberName]string propname = "")
