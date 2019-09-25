@@ -14,12 +14,12 @@ namespace JPKVat.Models
     {
         //public readonly string header = "KodFormularza;kodSystemowy;wersjaSchemy;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;DomyslnyKodWaluty;KodUrzedu;NIP;PelnaNazwa;REGON;KodKraju;Wojewodztwo;Powiat;Gmina;Ulica;NrDomu;NrLokalu;Miejscowosc;KodPocztowy;Poczta;typSprzedazy;LpSprzedazy;NrKontrahenta;NazwaKontrahenta;AdresKontrahenta;DowodSprzedazy;DataWystawienia;DataSprzedazy;K_10;K_11;K_12;K_13;K_14;K_15;K_16;K_17;K_18;K_19;K_20;K_21;K_22;K_23;K_24;K_25;K_26;K_27;K_28;K_29;K_30;K_31;K_32;K_33;K_34;K_35;K_36;K_37;K_38;K_39;LiczbaWierszySprzedazy;PodatekNalezny;typZakupu;LpZakupu;NrDostawcy;NazwaDostawcy;AdresDostawcy;DowodZakupu;DataZakupu;DataWplywu;K_43;K_44;K_45;K_46;K_47;K_48;K_49;K_50;LiczbaWierszyZakupow;PodatekNaliczony";
 
-        public readonly string header =   "KodFormularza;kodSystemowy;wersjaSchemy;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;NazwaSystemu;NIP;PelnaNazwa;Email;LpSprzedazy;NrKontrahenta;NazwaKontrahenta;AdresKontrahenta;DowodSprzedazy;DataWystawienia;DataSprzedazy;K_10;K_11;K_12;K_13;K_14;K_15;K_16;K_17;K_18;K_19;K_20;K_21;K_22;K_23;K_24;K_25;K_26;K_27;K_28;K_29;K_30;K_31;K_32;K_33;K_34;K_35;K_36;K_37;K_38;K_39;LiczbaWierszySprzedazy;PodatekNalezny;LpZakupu;NrDostawcy;NazwaDostawcy;AdresDostawcy;DowodZakupu;DataZakupu;DataWplywu;K_43;K_44;K_45;K_46;K_47;K_48;K_49;K_50;LiczbaWierszyZakupow;PodatekNaliczony";
+        public readonly string header = "KodFormularza;kodSystemowy;wersjaSchemy;WariantFormularza;CelZlozenia;DataWytworzeniaJPK;DataOd;DataDo;NazwaSystemu;NIP;PelnaNazwa;Email;LpSprzedazy;NrKontrahenta;NazwaKontrahenta;AdresKontrahenta;DowodSprzedazy;DataWystawienia;DataSprzedazy;K_10;K_11;K_12;K_13;K_14;K_15;K_16;K_17;K_18;K_19;K_20;K_21;K_22;K_23;K_24;K_25;K_26;K_27;K_28;K_29;K_30;K_31;K_32;K_33;K_34;K_35;K_36;K_37;K_38;K_39;LiczbaWierszySprzedazy;PodatekNalezny;LpZakupu;NrDostawcy;NazwaDostawcy;AdresDostawcy;DowodZakupu;DataZakupu;DataWplywu;K_43;K_44;K_45;K_46;K_47;K_48;K_49;K_50;LiczbaWierszyZakupow;PodatekNaliczony";
 
         public bool CreateCSvFile(Ijpk jpk)
         {
-            string jpkPath = System.IO.Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),"JPK","jpk.csv");
-            if(!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(jpkPath)))
+            string jpkPath = System.IO.Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "JPK", "jpk.csv");
+            if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(jpkPath)))
                 System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(jpkPath));
 
             try
@@ -72,7 +72,7 @@ namespace JPKVat.Models
                 jpk.JPKMessage = (new StringBuilder()).AppendLine("Wygenerowano JPK csv").AppendLine(jpkPath).ToString();
                 return true;
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 jpk.JPKMessage = exp.Message;
             }
@@ -82,7 +82,7 @@ namespace JPKVat.Models
 
 
 
-        public void FkRejSprzedazy(Ijpk jpk,CsvHelper.CsvWriter csv)
+        public void FkRejSprzedazy(Ijpk jpk, CsvHelper.CsvWriter csv)
         {
             //typSprzedazy	NrKontrahenta	NazwaKontrahenta	AdresKontrahenta	DowodSprzedazy	DataWystawienia	DataSprzedazy	K_10	K_11	K_12	K_13	K_14	K_15	K_16	K_17	K_18	K_19	K_20	K_21	K_22	K_23	K_24	K_25	K_26	K_27	K_28	K_29	K_30	K_31	K_32	K_33	K_34	K_35	K_36	K_37	K_38	K_39
             //LpSprzedazy   NrKontrahenta;NazwaKontrahenta;AdresKontrahenta;DowodSprzedazy;DataWystawienia;DataSprzedazy;           K_10;K_11;K_12;K_13;K_14;K_15;K_16;K_17;K_18;K_19;K_20;K_21;K_22;K_23;K_24;K_25;K_26;K_27;K_28;K_29;K_30;K_31;K_32;K_33;K_34;K_35;K_36;K_37;K_38;K_39;
@@ -94,27 +94,34 @@ namespace JPKVat.Models
 
             int ICount = 0;
             double vat = 0.0;
+            bool bFirst = true;
             foreach (DataRow dr in dt.Rows)
             {
-                for (int i = 0; i < fields.ToList().IndexOf("LpSprzedazy"); i++) csv.WriteField("");
-                //csv.WriteField("G");
-                csv.WriteField(++ICount);
-                csv.WriteField(dr["nip"].ToString().Trim().Length == 0 ? " ": dr["nip"].ToString().Trim());
-                csv.WriteField(dr["nazwa"].ToString().Trim());
-                StringBuilder cbAddress = new StringBuilder();
-                cbAddress.Append(dr["miasto"]).Append(" ").Append(dr["ulica"]).Append(" ").Append(dr["nr"]);
-                csv.WriteField(cbAddress.ToString());
-                csv.WriteField(dr["nrksiegowy"].ToString().Trim());
-                csv.WriteField(Convert.ToDateTime(dr["datawyst"]).ToJPK());
-                csv.WriteField(Convert.ToDateTime(dr["datasprzed"]).ToJPK());
-                csv.WriteField("");
-                csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? dr["netto"] : "");
-                PutEmpty(csv, "K_12", "K_19");
-                csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? "" : dr["netto"]);
-                csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? "" : dr["vat"]);
-                for (int i = 0; i < fields.Count() - fields.ToList().IndexOf("K_21"); i++) csv.WriteField("");
+                ICount += 1;
+                for (int first = 0; first < (bFirst ? 2 : 1); first++)
+                {
+                    for (int i = 0; i < fields.ToList().IndexOf("LpSprzedazy"); i++) csv.WriteField("");
+                    //csv.WriteField("G");
+                    csv.WriteField(ICount);
+                    csv.WriteField(dr["nip"].ToString().Trim().Length == 0 ? "Brak" : dr["nip"].ToString().Trim());
+                    csv.WriteField(dr["nazwa"].ToString().Trim());
+                    StringBuilder cbAddress = new StringBuilder();
+                    cbAddress.Append(dr["miasto"]).Append(" ").Append(dr["ulica"]).Append(" ").Append(dr["nr"]);
+                    csv.WriteField(cbAddress.ToString());
+                    csv.WriteField(dr["nrksiegowy"].ToString().Trim());
+                    csv.WriteField(Convert.ToDateTime(dr["datawyst"]).ToJPK());
+                    csv.WriteField(Convert.ToDateTime(dr["datasprzed"]).ToJPK());
+                    csv.WriteField("");
+                    csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? dr["netto"] : "");
+                    PutEmpty(csv, "K_12", "K_19");
+                    csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? "" : dr["netto"]);
+                    csv.WriteField(string.IsNullOrEmpty(dr["nip"].ToString().Trim()) ? "" : dr["vat"]);
+                    for (int i = 0; i < fields.Count() - fields.ToList().IndexOf("K_21"); i++) csv.WriteField("");
+                    csv.NextRecord();
+                }
+                bFirst = false;
                 vat += Convert.ToDouble(dr["vat"]);
-                csv.NextRecord();
+
             }
             for (int i = 0; i < fields.ToList().IndexOf("LiczbaWierszySprzedazy"); i++) csv.WriteField("");
             csv.WriteField(ICount);
@@ -138,7 +145,7 @@ namespace JPKVat.Models
                 for (int i = 0; i < fields.ToList().IndexOf("LpZakupu"); i++) csv.WriteField("");
                 //csv.WriteField("G");
                 csv.WriteField(++ICount);
-                csv.WriteField(dr["nip"].ToString().Trim().Length == 0 ? " " : dr["nip"].ToString().Trim());
+                csv.WriteField(dr["nip"].ToString().Trim().Length == 0 ? "Brak" : dr["nip"].ToString().Trim());
                 csv.WriteField(dr["nazwa"].ToString().Trim());
                 StringBuilder cbAddress = new StringBuilder();
                 cbAddress.Append(dr["miasto"].ToString().Trim()).Append(" ").Append(dr["ulica"].ToString().Trim()).Append(" ").Append(dr["nr"].ToString().Trim());

@@ -23,6 +23,7 @@ namespace JPKVat.Models
         RelayCommand _GenerateJPK;
         public ICommand GenerateJPK
         {
+           
             get { return _GenerateJPK; }
         }
 
